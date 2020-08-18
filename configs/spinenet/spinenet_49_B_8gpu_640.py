@@ -1,4 +1,4 @@
-# mAP 39.2
+# mAP 42.1
 
 cudnn_benchmark = True
 # model settings
@@ -7,16 +7,16 @@ model = dict(
     type='RetinaNet',
     backbone=dict(
         type='SpineNet',
-        arch="49S",
+        arch="49",
         norm_cfg=norm_cfg),
     neck=None,
     bbox_head=dict(
         type='RetinaSepBNHead',
         num_classes=81,
         num_ins=5,
-        in_channels=128,
+        in_channels=256,
         stacked_convs=4,
-        feat_channels=128,
+        feat_channels=256,
         octave_base_scale=3,
         scales_per_octave=3,
         anchor_ratios=[0.5, 1.0, 2.0],
@@ -84,7 +84,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    imgs_per_gpu=32,
+    imgs_per_gpu=28,
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
@@ -105,7 +105,7 @@ evaluation = dict(interval=1, metric='bbox')
 # optimizer
 optimizer = dict(
     type='SGD',
-    lr=0.28,
+    lr=0.245,
     momentum=0.9,
     weight_decay=4e-5,
     paramwise_options=dict(norm_decay_mult=0))
@@ -114,7 +114,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=10, norm_type=2))
 lr_config = dict(
     policy='step',
     warmup='linear',
-    warmup_iters=2000,
+    warmup_iters=2285,
     warmup_ratio=0.1,
     step=[320, 340])
 checkpoint_config = dict(interval=1)
@@ -123,14 +123,14 @@ log_config = dict(
     interval=50,
     hooks=[
         dict(type='TextLoggerHook'),
-        dict(type='TensorboardLoggerHook') # pip install tensorboard
+        dict(type='TensorboardLoggerHook')
     ])
 # yapf:enable
 # runtime settings
 total_epochs = 350
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/spinenet_49S_B/'
+work_dir = './work_dirs/spinenet_49_B_640/'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]

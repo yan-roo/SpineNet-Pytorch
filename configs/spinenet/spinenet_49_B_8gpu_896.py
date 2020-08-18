@@ -1,4 +1,4 @@
-# mAP 42.7
+# mAP 44.9
 
 cudnn_benchmark = True
 # model settings
@@ -58,13 +58,13 @@ train_pipeline = [
     dict(type='LoadAnnotations', with_bbox=True),
     dict(
         type='Resize',
-        img_scale=(640, 640),
+        img_scale=(896, 896),
         ratio_range=(0.5, 2.0),
         keep_ratio=True),
-    dict(type='RandomCrop', crop_size=(640, 640)),
+    dict(type='RandomCrop', crop_size=(896, 896)),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
-    dict(type='Pad', size=(640, 640)),
+    dict(type='Pad', size=(896, 896)),
     dict(type='DefaultFormatBundle'),
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels']),
 ]
@@ -72,19 +72,19 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(640, 640),
+        img_scale=(896, 896),
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
             dict(type='RandomFlip'),
             dict(type='Normalize', **img_norm_cfg),
-            dict(type='Pad', size_divisor=64),
+            dict(type='Pad', size_divisor=128),
             dict(type='ImageToTensor', keys=['img']),
             dict(type='Collect', keys=['img']),
         ])
 ]
 data = dict(
-    imgs_per_gpu=8,
+    imgs_per_gpu=14,
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
@@ -105,7 +105,7 @@ evaluation = dict(interval=1, metric='bbox')
 # optimizer
 optimizer = dict(
     type='SGD',
-    lr=0.07,
+    lr=0.1225,
     momentum=0.9,
     weight_decay=4e-5,
     paramwise_options=dict(norm_decay_mult=0))
@@ -114,7 +114,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=10, norm_type=2))
 lr_config = dict(
     policy='step',
     warmup='linear',
-    warmup_iters=8000,
+    warmup_iters=4572,
     warmup_ratio=0.1,
     step=[320, 340])
 checkpoint_config = dict(interval=1)
@@ -123,14 +123,14 @@ log_config = dict(
     interval=50,
     hooks=[
         dict(type='TextLoggerHook'),
-        # dict(type='TensorboardLoggerHook')
+        dict(type='TensorboardLoggerHook')
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 50
+total_epochs = 350
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/spinenet_49_B/'
+work_dir = './work_dirs/spinenet_49_B_896/'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
