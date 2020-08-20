@@ -10,12 +10,12 @@ It is highly based on the
 
 | Backbone     | Resolution  | mAP  | Params | FLOPs   | mAP in paper | Params in paper | FLOPs in paper |
 | ------------ | ----------  | ---- | ------ | ------- | ------------ | --------------- | -------------- |
-| SpineNet-49S |   640x640   | 39.1 | 11.15M | 30.04B  | 39.9         | 12.0M           | 33.8B          |
-| SpineNet-49  |   640x640   | 42.7 | 28.31M | 83.7B   | 42.8         | 28.5M           | 85.4B          |
-| SpineNet-49  |   896x896   | 42.7 | 28.31M | 83.7B   | 42.8         | 28.5M           | 85.4B          |
+| SpineNet-49S |   640x640   | 39.2 | 11.15M | 30.04B  | 39.9         | 12.0M           | 33.8B          |
+| SpineNet-49  |   640x640   | 42.1 | 28.31M | 83.7B   | 42.8         | 28.5M           | 85.4B          |
+| SpineNet-49  |   896x896   | 44.9 | 28.31M | 164.05B | 45.3         | 28.5M           | 85.4B          |
 | SpineNet-96  |  1024x1024  | ——   | 42.74M | 261.35B | 47.1         | 43.0M           | 265.4B         |
-| SpineNet-143 |  1280x1280  | ——   | ——     | ——      | 48.1         | 66.9M           | 524.4B         |
-| SpineNet-190 |  1280x1280  | ——   | ——     | ——      | ——           | 163.6M          | 1885B          |
+| SpineNet-143 |  1280x1280  | ——   | 66.73M | 518.32B | 48.1         | 66.9M           | 524.4B         |
+| SpineNet-190 |  1280x1280  | ——   | 163.17M| 1870.89B| 52.1 (C)     | 163.6M          | 1885B          |
 
 **Note**: The parameters and FLOPs are a little different from paper. More information about models can see in [MODEL_DETAILS.md](docs/MODEL_DETAILS.md)
 
@@ -141,3 +141,5 @@ More usages can reference [GETTING_STARTED.md](docs/GETTING_STARTED.md) or [MMDe
       rm -r build
       python setup.py develop
       ```
+   3. AssertionError: Default process group is not initialized
+      Modify [config/spinenet/model.py Line5](https://github.com/yan-roo/SpineNet-Pytorch/blob/master/configs/spinenet/spinenet_49S_B_8gpu.py#L5) type='SyncBN' -> type='BN'
