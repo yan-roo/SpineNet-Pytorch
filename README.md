@@ -17,7 +17,7 @@ It is highly based on the
 | SpineNet-143 |  1280x1280  | ——   | ——     | ——      | 48.1         | 66.9M           | 524.4B         |
 | SpineNet-190 |  1280x1280  | ——   | ——     | ——      | ——           | 163.6M          | 1885B          |
 
-**Note**: The parameters and FLOPs are a little different from paper. More information about models can see in [MODEL_DETAILS.md](MODEL_DETAILS.md)
+**Note**: The parameters and FLOPs are a little different from paper. More information about models can see in [MODEL_DETAILS.md](docs/MODEL_DETAILS.md)
 
 ## Installation
 
@@ -60,6 +60,7 @@ It is highly based on the
 ### 1. Copy the codes to mmdetection directory
 
 ```shell
+git clone https://github.com/yan-roo/SpineNet-Pytorch.git
 cp -r mmdet/ mmdetection/
 cp -r configs/ mmdetection/
 ```
