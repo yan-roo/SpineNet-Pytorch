@@ -38,8 +38,13 @@ It is highly based on the
    ```shell
    conda install pytorch==1.4.0 torchvision==0.5.0 cudatoolkit=10.1 -c pytorch
    ```
-
-   c. Clone the mmdetection repository.
+   c. Install mmcv
+   
+   ```shell
+   pip install mmcv==0.4.3
+   ```  
+   
+   d. Clone the mmdetection repository.
 
    ```shell
    git clone https://github.com/open-mmlab/mmdetection.git
@@ -121,3 +126,18 @@ python tools/get_flops.py ${CONFIG_FILE} --shape $SIZE $SIZE
    ```
 
 More usages can reference [GETTING_STARTED.md](docs/GETTING_STARTED.md) or [MMDetection documentation](https://mmdetection.readthedocs.io/).
+
+## Issues & FAQ
+
+   1. ModuleNotFoundError: No module named 'mmcv.cnn.weight_init'
+
+      ```
+      pip install mmcv==0.4.3	
+      ```
+
+   2. [ImportError: libtorch_cpu.so: cannot open shared object file: No such file or directory](https://github.com/open-mmlab/mmdetection/issues/2627)
+
+      ```
+      rm -r build
+      python setup.py develop
+      ```
