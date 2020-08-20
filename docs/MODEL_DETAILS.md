@@ -8,7 +8,7 @@ In paper SpineNet was trained with three protocols. I only trained with protocol
 ### mAP
 
 | Backbone     | Resolution | my code(B) | paper(A) | paper(B) | paper(C) |Training Time|
-| ------------ | ---------- | ---------- | -------- | -------- | -------- |             |
+| ------------ | ---------- | ---------- | -------- | -------- | -------- | ----------- |
 | SpineNet-49S |  640x640   | 39.2       | ——       | 39.9     | 41.5     |   3d 5h     |
 | SpineNet-49  |  640x640   | 42.1       | 40.8     | 42.8     | 44.3     |   4d 2h     |
 | SpineNet-49  |  896x896   | 44.9       | ——       | 45.3     | 46.7     |   6d 16h    |

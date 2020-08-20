@@ -96,6 +96,17 @@ mv ${train/val/test}2017  ${mmdetection/data/coco/}
 
 
 ### 3. Train a model
+
+**\*Important\***: The default learning rate in SpineNet-49S config files is for 8 GPUs and [32 img/gpu](https://github.com/yan-roo/SpineNet-Pytorch/blob/master/configs/spinenet/spinenet_49S_B_8gpu.py#L87) (batch size = 8*32 = 256).
+
+According to the [Linear Scaling Rule](https://arxiv.org/abs/1706.02677), you need to set the learning rate proportional to the batch size if you use different GPUs or images per GPU.
+
+e.g., lr=0.28 for 8 GPUs * 32 img/gpu and lr=0.07 for 8 GPUs * 8 img/gpu.
+
+You also can set the [warm-up iterations](https://github.com/yan-roo/SpineNet-Pytorch/blob/master/configs/spinenet/spinenet_49S_B_8gpu.py#L117).
+
+e.g., warmup_iters=2000 for batch size 256 and warmup_iters=8000 for batch size 64
+
 #### Train with a single GPU
 Modify [config/spinenet/model.py Line5](https://github.com/yan-roo/SpineNet-Pytorch/blob/master/configs/spinenet/spinenet_49S_B_8gpu.py#L5)
 type='SyncBN' -> type='BN'
