@@ -1,4 +1,6 @@
 # SpineNet-Pytorch
+![demo image](demo/coco_test_12510.jpg)
+
 [SpineNet](https://arxiv.org/abs/1912.05027) is a scale-permuted backbone for object detection, proposed by Google Brain in CVPR 2020. This project is a kind of implementation of SpineNet using mmdetection.
 
 It is highly based on the
