@@ -121,11 +121,11 @@ log_config = dict(
     interval=50,
     hooks=[
         dict(type='TextLoggerHook'),
-        # dict(type='TensorboardLoggerHook')
+        dict(type='TensorboardLoggerHook')
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 50
+total_epochs = 350
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/spinenet_96_B/'

@@ -12,6 +12,7 @@ In paper SpineNet was trained with three protocols. I only trained with protocol
 | SpineNet-49S |  640x640   | 39.2       | ——       | 39.9     | 41.5     |   3d 5h     |
 | SpineNet-49  |  640x640   | 42.1       | 40.8     | 42.8     | 44.3     |   4d 2h     |
 | SpineNet-49  |  896x896   | 44.9       | ——       | 45.3     | 46.7     |   6d 16h    |
+| SpineNet-96  |  1024x1024 | 44.9       | ——       | 47.1     | 48.6     |   11d 7h    |
 
 ### Details
 
@@ -59,6 +60,21 @@ In paper SpineNet was trained with three protocols. I only trained with protocol
 	 Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.428
 	 Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.650
 	 Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.756
+	 ```
+- SpineNet-96 1024
+	```
+	 Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.469
+	 Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.673
+	 Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.507
+	 Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.300
+	 Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.510
+	 Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.608
+	 Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.364
+	 Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.588
+	 Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.624
+	 Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.448
+	 Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.665
+	 Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.768
 	 ```
 
 
