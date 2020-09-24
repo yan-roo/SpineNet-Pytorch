@@ -82,7 +82,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    imgs_per_gpu=8,
+    imgs_per_gpu=3,
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
@@ -103,7 +103,7 @@ evaluation = dict(interval=1, metric='bbox')
 # optimizer
 optimizer = dict(
     type='SGD',
-    lr=0.07,
+    lr=0.02625,
     momentum=0.9,
     weight_decay=4e-5,
     paramwise_options=dict(norm_decay_mult=0))
@@ -112,7 +112,7 @@ optimizer_config = dict(grad_clip=dict(max_norm=10, norm_type=2))
 lr_config = dict(
     policy='step',
     warmup='linear',
-    warmup_iters=8000,
+    warmup_iters=21333,
     warmup_ratio=0.1,
     step=[320, 340])
 checkpoint_config = dict(interval=1)
@@ -121,11 +121,11 @@ log_config = dict(
     interval=50,
     hooks=[
         dict(type='TextLoggerHook'),
-        # dict(type='TensorboardLoggerHook')
+        dict(type='TensorboardLoggerHook')
     ])
 # yapf:enable
 # runtime settings
-total_epochs = 50
+total_epochs = 350
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
 work_dir = './work_dirs/spinenet_143_B/'
