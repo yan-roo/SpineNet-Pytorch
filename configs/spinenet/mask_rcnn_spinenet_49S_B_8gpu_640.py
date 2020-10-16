@@ -1,3 +1,4 @@
+# mAP
 
 cudnn_benchmark = True
 # model settings
@@ -7,16 +8,16 @@ model = dict(
     type='MaskRCNN',
     backbone=dict(
         type='SpineNet',
-        arch="49",
+        arch="49S",
         norm_cfg=norm_cfg),
     neck=None,
     rpn_head=dict(
         type='RPNHead',
-        in_channels=256,
-        feat_channels=256,
-        anchor_scales=[8],
+        in_channels=128,
+        feat_channels=128,
+        anchor_scales=[3],
         anchor_ratios=[0.5, 1.0, 2.0],
-        anchor_strides=[4, 8, 16, 32, 64],
+        anchor_strides=[8, 16, 32, 64, 128],
         target_means=[.0, .0, .0, .0],
         target_stds=[1.0, 1.0, 1.0, 1.0],
         loss_cls=dict(
@@ -25,33 +26,36 @@ model = dict(
     bbox_roi_extractor=dict(
         type='SingleRoIExtractor',
         roi_layer=dict(type='RoIAlign', out_size=7, sample_num=2),
-        out_channels=256,
-        featmap_strides=[4, 8, 16, 32]),
+        out_channels=128,
+        featmap_strides=[8, 16, 32, 64]),
     bbox_head=dict(
-        type='Shared4Conv1FCBBoxHead',
-        norm_cfg=norm_cfg,
-        in_channels=256,
-        fc_out_channels=1024,
+        type='ConvFCBBoxHead',
+        num_shared_convs=4,
+        num_shared_fcs=1,
+        in_channels=128,
+        conv_out_channels=128,
+        fc_out_channels=512,
         roi_feat_size=7,
         num_classes=81,
         target_means=[0., 0., 0., 0.],
         target_stds=[0.1, 0.1, 0.2, 0.2],
         reg_class_agnostic=False,
+        norm_cfg=norm_cfg,
         loss_cls=dict(
             type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0),
         loss_bbox=dict(type='SmoothL1Loss', beta=1.0, loss_weight=1.0)),
     mask_roi_extractor=dict(
         type='SingleRoIExtractor',
         roi_layer=dict(type='RoIAlign', out_size=14, sample_num=2),
-        out_channels=256,
-        featmap_strides=[4, 8, 16, 32]),
+        out_channels=128,
+        featmap_strides=[8, 16, 32, 64]),
     mask_head=dict(
         type='FCNMaskHead',
-        norm_cfg=norm_cfg,
         num_convs=4,
-        in_channels=256,
-        conv_out_channels=256,
+        in_channels=128,
+        conv_out_channels=128,
         num_classes=81,
+        norm_cfg=norm_cfg,
         loss_mask=dict(
             type='CrossEntropyLoss', use_mask=True, loss_weight=1.0)))
 # model training and testing settings
@@ -140,7 +144,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    imgs_per_gpu=20,
+    imgs_per_gpu=16,
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
@@ -161,22 +165,22 @@ evaluation = dict(interval=1, metric=['bbox', 'segm'])
 # optimizer
 optimizer = dict(
     type='SGD',
-    lr=0.175,
+    lr=0.14,
     momentum=0.9,
     weight_decay=4e-5,
     paramwise_options=dict(norm_decay_mult=0))
-optimizer_config = dict(grad_clip=dict(max_norm=10, norm_type=2))
+optimizer_config = dict(grad_clip=None)
 # learning policy
 lr_config = dict(
     policy='step',
     warmup='linear',
-    warmup_iters=3200,
+    warmup_iters=4000,
     warmup_ratio=0.1,
     step=[320, 340])
 checkpoint_config = dict(interval=1)
 # yapf:disable
 log_config = dict(
-    interval=50,
+    interval=100,
     hooks=[
         dict(type='TextLoggerHook'),
         dict(type='TensorboardLoggerHook')
@@ -186,7 +190,7 @@ log_config = dict(
 total_epochs = 350
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/msrcnn_spinenet_49_B'
+work_dir = './work_dirs/msrcnn_spinenet_49S_B'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
