@@ -18,8 +18,8 @@ In paper SpineNet was trained with three protocols. I only trained with protocol
 ### Instance Segmentation Baselines
 
 | Backbone     | Resolution | box AP(B) | mask AP(B) | paper box AP(B) | paper mask AP(B)|Training Time|
-| ------------ | ---------- | --------- | ---------- | --------------- | --------------- |
-| SpineNet-49S |  640x640   | 39.7      | 34.9       | 39.3            | 34.8            |   6d  13h    |
+| ------------ | ---------- | --------- | ---------- | --------------- | --------------- | ----------- |
+| SpineNet-49S |  640x640   | 39.7      | 34.9       | 39.3            | 34.8            |   6d  13h   |
 
 ### Details
 #### RetinaNet (Trained from scratch)

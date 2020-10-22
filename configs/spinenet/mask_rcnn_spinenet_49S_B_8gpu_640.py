@@ -1,4 +1,4 @@
-# mAP
+# box AP 39.7  mask AP 34.9
 
 cudnn_benchmark = True
 # model settings
