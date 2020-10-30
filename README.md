@@ -25,6 +25,7 @@ It is highly based on the
 | Backbone     | Resolution  |box AP|mask AP| Params | FLOPs   |box mAP <br> (paper)|mask mAP <br> (paper)| Params <br> (paper) | FLOPs <br> (paper) | Download |
 | ------------ | ----------  | ---- | ----- | ------ | ------- | ------------------ | ------------------- | ------------------- | ------------------ | -------- |
 | [SpineNet-49S](configs/spinenet/mask_rcnn_spinenet_49S_B_8gpu_640.py) |   640x640   | 39.7 | 34.9 | 13.92M | 63.77B  |       39.3       |       34.8       |         13.9M       |        60.2B       | [model](https://drive.google.com/file/d/1WEa7y8kFXPoCtDEeNpTzJrKpVlMbjiGG/view?usp=sharing) |
+| [SpineNet-49](configs/spinenet/mask_rcnn_spinenet_49_B_8gpu_640.py) |   640x640   | 43.3 | 37.8 | 40.69M | 231.17B  |       42.9       |       38.1       |         40.8M       |        216.1B       | [model](https://drive.google.com/file/d/1EvbZslpP9e1ge_YQWrqnxDqMYmRujjIL/view?usp=sharing) |
 
 **Note**: The parameters and FLOPs are a little different from paper. More information about models can see in [MODEL_DETAILS.md](docs/MODEL_DETAILS.md)
 
