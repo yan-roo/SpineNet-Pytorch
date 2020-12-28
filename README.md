@@ -1,4 +1,7 @@
 # SpineNet-Pytorch
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/spinenet-learning-scale-permuted-backbone-for/object-detection-on-coco)](https://paperswithcode.com/sota/object-detection-on-coco?p=spinenet-learning-scale-permuted-backbone-for)<br>
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/spinenet-learning-scale-permuted-backbone-for/instance-segmentation-on-coco)](https://paperswithcode.com/sota/instance-segmentation-on-coco?p=spinenet-learning-scale-permuted-backbone-for)<br>
+
 ![demo image](demo/coco_test_12510.jpg)
 
 [SpineNet](https://arxiv.org/abs/1912.05027) is a scale-permuted backbone for object detection, proposed by Google Brain in CVPR 2020. This project is a kind of implementation of SpineNet using mmdetection.

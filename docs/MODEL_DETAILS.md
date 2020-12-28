@@ -21,7 +21,7 @@ In paper SpineNet was trained with three protocols. I only trained with protocol
 | ------------ | ---------- | --------- | ---------- | --------------- | --------------- | ----------- |
 | SpineNet-49S |  640x640   | 39.7      | 34.9       | 39.3            | 34.8            |   6d  13h   |
 | SpineNet-49  |  640x640   | 43.3      | 37.8       | 42.9            | 38.1            |   7d  18h   |
-| SpineNet-96  | 1024x1024  | 47.2      | 37.8       | 47.2            | 41.5            |   14d 21h   |
+| SpineNet-96  | 1024x1024  | 47.0      | 41.2       | 47.2            | 41.5            |   14d 21h   |
 
 ### Details
 #### RetinaNet (Trained from scratch)
