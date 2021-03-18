@@ -22,6 +22,7 @@ In paper SpineNet was trained with three protocols. I only trained with protocol
 | SpineNet-49S |  640x640   | 39.7      | 34.9       | 39.3            | 34.8            |   6d  13h   |
 | SpineNet-49  |  640x640   | 43.3      | 37.8       | 42.9            | 38.1            |   7d  18h   |
 | SpineNet-96  | 1024x1024  | 47.0      | 41.2       | 47.2            | 41.5            |   14d 21h   |
+| SpineNet-143 | 1280x1280  | 48.3      | 41.3       | 48.8            | 42.7            |   26d 19h   |
 
 ### Details
 #### RetinaNet (Trained from scratch)
@@ -191,4 +192,34 @@ In paper SpineNet was trained with three protocols. I only trained with protocol
      Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.349
      Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.577
      Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.698
+     ```
+- SpineNet-143 1280
+    ```
+     Bbox
+     Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.483
+     Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.689
+     Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.529
+     Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.330
+     Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.527
+     Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.607
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.364
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.578
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.606
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.445
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.652
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.729
+     
+     Segm
+     Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.413
+     Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=100 ] = 0.654
+     Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=100 ] = 0.444
+     Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.263
+     Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.452
+     Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.540
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=  1 ] = 0.322
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets= 10 ] = 0.504
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.525
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=100 ] = 0.363
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=100 ] = 0.569
+     Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=100 ] = 0.657
      ```

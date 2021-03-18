@@ -1,4 +1,4 @@
-# box AP 47.0  mask AP 41.2
+# box AP 48.3  mask AP 41.3
 
 cudnn_benchmark = True
 # model settings
@@ -8,7 +8,7 @@ model = dict(
     type='MaskRCNN',
     backbone=dict(
         type='SpineNet',
-        arch="96",
+        arch="143",
         norm_cfg=norm_cfg),
     neck=None,
     rpn_head=dict(
@@ -73,14 +73,14 @@ train_cfg = dict(
             pos_fraction=0.5,
             neg_pos_ub=-1,
             add_gt_as_proposals=False),
-        allowed_border=0,
+        allowed_border=-1,
         pos_weight=-1,
         debug=False),
     rpn_proposal=dict(
         nms_across_levels=False,
         nms_pre=2000,
-        nms_post=2000,
-        max_num=2000,
+        nms_post=1000,
+        max_num=1000,
         nms_thr=0.7,
         min_bbox_size=0),
     rcnn=dict(
@@ -120,11 +120,11 @@ img_norm_cfg = dict(
 train_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-    dict(type='Resize', img_scale=(1024, 1024), ratio_range=(0.5, 2.0),keep_ratio=True),
-    dict(type='RandomCrop', crop_size=(1024, 1024)),
+    dict(type='Resize', img_scale=(1280, 1280), ratio_range=(0.5, 2.0),keep_ratio=True),
+    dict(type='RandomCrop', crop_size=(1280, 1280)),
     dict(type='RandomFlip', flip_ratio=0.5),
     dict(type='Normalize', **img_norm_cfg),
-    dict(type='Pad', size=(1024, 1024)),
+    dict(type='Pad', size=(1280, 1280)),
     dict(type='DefaultFormatBundle'),
     dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks']),
 ]
@@ -132,7 +132,7 @@ test_pipeline = [
     dict(type='LoadImageFromFile'),
     dict(
         type='MultiScaleFlipAug',
-        img_scale=(1024, 1024),
+        img_scale=(1280, 1280),
         flip=False,
         transforms=[
             dict(type='Resize', keep_ratio=True),
@@ -144,7 +144,7 @@ test_pipeline = [
         ])
 ]
 data = dict(
-    imgs_per_gpu=6,
+    imgs_per_gpu=3,
     workers_per_gpu=4,
     train=dict(
         type=dataset_type,
@@ -165,7 +165,7 @@ evaluation = dict(interval=1, metric=['bbox', 'segm'])
 # optimizer
 optimizer = dict(
     type='SGD',
-    lr=0.0525,
+    lr=0.02625,
     momentum=0.9,
     weight_decay=4e-5,
     paramwise_options=dict(norm_decay_mult=0))
@@ -174,7 +174,7 @@ optimizer_config = dict(grad_clip=None)
 lr_config = dict(
     policy='step',
     warmup='linear',
-    warmup_iters=10667,
+    warmup_iters=21333,
     warmup_ratio=0.1,
     step=[320, 340])
 checkpoint_config = dict(interval=1)
@@ -190,7 +190,7 @@ log_config = dict(
 total_epochs = 350
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = './work_dirs/msrcnn_spinenet_96_B'
+work_dir = './work_dirs/msrcnn_spinenet_143_B'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]
